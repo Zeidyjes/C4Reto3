@@ -4,8 +4,9 @@
  */
 package com.zorrillo.colonias.controlador;
 
-import com.zorrillo.colonias.servicio.UserFragance;
+
 import com.zorrillo.colonias.modelo.Fragance;
+import com.zorrillo.colonias.servicio.UserFragance;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -59,6 +60,16 @@ public class FraganceController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public boolean delete(@PathVariable("reference") String reference) {
         return userFragance.delete(reference);
+    }
+    
+     @GetMapping("/price/{price}")
+    public List<Fragance> gadgetsByPrice(@PathVariable("price") double precio) {
+        return userFragance.gadgetsByPrice(precio);
+    }
+
+    @GetMapping("/description/{description}")
+    public List<Fragance> findByDescriptionLike(@PathVariable("description") String description) {
+        return userFragance.findByDescriptionLike(description);
     }
 
 }

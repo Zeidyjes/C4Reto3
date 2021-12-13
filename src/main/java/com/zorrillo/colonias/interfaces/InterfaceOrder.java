@@ -5,6 +5,7 @@
 package com.zorrillo.colonias.interfaces;
 
 import com.zorrillo.colonias.modelo.Order;
+
 import java.util.List;
 import java.util.Optional;
 import org.springframework.data.mongodb.repository.MongoRepository;
@@ -27,4 +28,8 @@ public interface InterfaceOrder extends MongoRepository<Order, Integer> {
     
     //Para seleccionar la orden con el id maximo
     Optional<Order> findTopByOrderByIdDesc();
+    
+//    List<Order> findBySalesManId(Integer id);
+//    List<Order> findBySalesManIdAndStatus(Integer id, String status);
+//    List<Order> findByRegisterDayAndSalesManId(Date registerDay, Integer id);
 }

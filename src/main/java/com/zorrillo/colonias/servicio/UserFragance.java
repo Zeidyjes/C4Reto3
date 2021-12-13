@@ -18,28 +18,29 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserFragance {
      @Autowired
-    private FraganceRepositorio fraganceRepository;
-
+    private FraganceRepositorio fraganceRepositorio;
+     
+     
     public List<Fragance> getAll() {
-        return fraganceRepository.getAll();
+        return fraganceRepositorio.getAll();
     }
 
    public Optional<Fragance> getFragance(String reference) {
-        return fraganceRepository.getFragance(reference);
+        return fraganceRepositorio.getFragance(reference);
     }
 
     public Fragance create(Fragance fragance) {
         if (fragance.getReference() == null) {
             return fragance;
         } else {
-            return fraganceRepository.create(fragance);
+            return fraganceRepositorio.create(fragance);
         }
     }
 
     public Fragance update(Fragance fragance) {
 
         if (fragance.getReference() != null) {
-            Optional<Fragance> fraganceDb = fraganceRepository.getFragance(fragance.getReference());
+            Optional<Fragance> fraganceDb = fraganceRepositorio.getFragance(fragance.getReference());
             if (!fraganceDb.isEmpty()) {
                 
                 if (fragance.getBrand()!= null) {
@@ -66,7 +67,7 @@ public class UserFragance {
                     fraganceDb.get().setPhotography(fragance.getPhotography());
                 }
                 fraganceDb.get().setAvailability(fragance.isAvailability());
-                fraganceRepository.update(fraganceDb.get());
+                fraganceRepositorio.update(fraganceDb.get());
                 return fraganceDb.get();
             } else {
                 return fragance;
@@ -78,10 +79,19 @@ public class UserFragance {
 
     public boolean delete(String reference) {
         Boolean aBoolean = getFragance(reference).map(fragance -> {
-            fraganceRepository.delete(fragance);
+            fraganceRepositorio.delete(fragance);
             return true;
         }).orElse(false);
         return aBoolean;
+    }
+    //Reto 5
+    public List<Fragance> gadgetsByPrice(double price) {
+        return fraganceRepositorio.gadgetsByPrice(price);
+    }
+
+    //Reto 5
+    public List<Fragance> findByDescriptionLike(String description) {
+        return fraganceRepositorio.findByDescriptionLike(description);
     }
     
 

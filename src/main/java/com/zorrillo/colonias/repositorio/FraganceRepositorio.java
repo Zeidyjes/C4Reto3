@@ -38,6 +38,14 @@ public class FraganceRepositorio {
     public void delete(Fragance fragance) {
         interfaceFragance.delete(fragance);
     }
+    //Reto 5
+    public List<Fragance> gadgetsByPrice(double precio) {
+        return interfaceFragance.findByPriceLessThanEqual(precio);
+    }
+    //Reto 5
+    public List<Fragance> findByDescriptionLike(String description) {
+        return interfaceFragance.findByDescriptionLike(description);
+    }
 
 
 }

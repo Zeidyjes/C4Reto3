@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 /**
  * @author Zeidy Johana Estupiñan S.
- * @since 23 de noviembre de 2021
+ * @since 10 de diciembre de 2021
  */
 @RestController
 @RequestMapping("/api/user")
@@ -100,6 +100,11 @@ public class UserController {
     @GetMapping("/emailexist/{email}")
     public boolean emailExists(@PathVariable("email") String email) {
         return userService.emailExists(email);
+    }
+    
+    @GetMapping("/birthday/{month}")
+    public List<User> birthtDayList(@PathVariable("month") String monthBirthtDay) {
+        return userService.birthtDayList(monthBirthtDay);
     }
 
 }
